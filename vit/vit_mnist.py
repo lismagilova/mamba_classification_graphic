@@ -256,9 +256,11 @@ def visualize_predictions(model, test_loader, num_samples=5, device='cpu', model
     model = model.to(device)
     model.eval()
     try:
-        dataiter = iter(test_loader) images, labels = next(dataiter)
+        dataiter = iter(test_loader)
+        images, labels = next(dataiter)
     except StopIteration:
-        print("Не удалось получить данные из test_loader для визуализации.") return
+        print("Не удалось получить данные из test_loader для визуализации.")
+        return
     images_subset = images[:num_samples].to(device)
     labels_subset = labels[:num_samples]
     with torch.no_grad():
